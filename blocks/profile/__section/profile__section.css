@@ -1,0 +1,13 @@
+.profile__section {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+@media (max-width: 500px) {
+    .profile__section {
+        justify-content: center;
+    }    
+}

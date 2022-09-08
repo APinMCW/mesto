@@ -14,7 +14,45 @@
         src="../mesto/images/logo.svg"
         alt="Лого Место"
       />
-      <img class="header__line" src="../mesto/images/Line.svg" alt="разделительная линия">
+      <img
+        class="header__line"
+        src="../mesto/images/Line.svg"
+        alt="разделительная линия"
+      />
     </header>
+    <section class="profile">
+      <img
+        class="profile__avatar"
+        src="../mesto/images/Avatar.png"
+        alt="Аватарка"
+      />
+      <div class="profile__section">
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <p class="profile__job">Исследователь океана</p>
+        </div>
+        <div>
+          <a href="#"
+            ><img
+              class="profile__button"
+              src="../mesto/images/Edit Button.svg"
+              alt="кнопка редактирования"
+          /></a>
+        </div>
+      </div>
+      <a href="#">
+        <picture>
+          <source
+            media="(max-width: 500px)"
+            srcset="../mesto/images/AddButtonlong.png"
+          />
+          <img
+            class="profile__plus"
+            src="../mesto/images/AddButtonshort.png"
+            alt="добавить карточку"
+          />
+        </picture>
+      </a>
+    </section>
   </body>
 </html>

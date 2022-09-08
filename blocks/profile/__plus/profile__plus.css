@@ -1,0 +1,16 @@
+.profile__plus {
+    margin: 0;   
+}
+
+@media (max-width: 500px) {
+    .profile__plus {
+        padding: 36px 0 0;
+    }    
+}
+
+@media (min-width: 1024px) {
+    .profile__plus:hover {
+        opacity: 0.6;
+        transition: opacity 0.3s;
+    }
+}

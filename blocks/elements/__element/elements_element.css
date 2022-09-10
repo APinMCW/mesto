@@ -1,0 +1,5 @@
+.elements__element {
+    max-width: calc(100%);
+    border-radius: 10px;
+    background-color: #fff;
+}

@@ -125,5 +125,30 @@
     <footer class="footer">
       <h3 class="footer__author">&copy; 2020 Mesto Russia</h3>
     </footer>
+    <section class="overlay overlay_opened">
+      <div class="popup">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <button
+          class="popup__close"
+          type="button"
+          aria-label="закрыть окно"
+        ></button>
+        <form action="" class="popup__form">
+          <input
+            type="text"
+            name="name"
+            class="popup__input popup__input_data_name"
+          />
+          <input
+            type="text"
+            name="job"
+            class="popup__input popup__input_data_job"
+          />
+          <button class="popup__save" type="submit" aria-label="сохранить">
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </section>
   </body>
 </html>

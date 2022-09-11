@@ -12,6 +12,11 @@
     border: 0;
 }
 
+.popup__save:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
 @media (max-width: 500px) {
     .popup__save {
         margin: 45px 0 0;

@@ -6,8 +6,9 @@
     min-width: 217px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 550px) {
     .profile__section {
         justify-content: center;
+        max-width: 282px;
     }    
 }

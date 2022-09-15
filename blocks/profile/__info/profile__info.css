@@ -4,8 +4,9 @@
     min-width: 189px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 550px) {
     .profile__info {
         padding: 26px 0 0;
-    }    
+        margin: 0;
+    }
 }

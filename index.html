@@ -42,7 +42,7 @@
           />
           <div class="elements__container">
             <h2 class="elements__title">Байкал</h2>
-            <div class="elements__like"></div>
+            <button type="button" class="elements__like" aria-label="Поставить лайк"></button>
           </div>
         </article>
       </li class="elements__list">
@@ -55,7 +55,7 @@
           />
           <div class="elements__container">
             <h2 class="elements__title">Гора Эльбрус</h2>
-            <div class="elements__like"></div>
+            <button type="button" class="elements__like" aria-label="Поставить лайк"></button>
           </div>
         </article>
       </li class="elements__list">
@@ -68,7 +68,7 @@
           />
           <div class="elements__container">
             <h2 class="elements__title">Карачаево-Черкесская Республика</h2>
-            <div class="elements__like"></div>
+            <button type="button" class="elements__like" aria-label="Поставить лайк"></button>
           </div>
         </article>
       </li class="elements__list">
@@ -81,7 +81,7 @@
           />
           <div class="elements__container">
             <h2 class="elements__title">Териберка</h2>
-            <div class="elements__like"></div>
+            <button type="button" class="elements__like" aria-label="Поставить лайк"></button>
           </div>
         </article>
       </li class="elements__list">
@@ -94,7 +94,7 @@
           />
           <div class="elements__container">
             <h2 class="elements__title">Хребет Нургуш</h2>
-            <div class="elements__like"></div>
+            <button type="button" class="elements__like" aria-label="Поставить лайк"></button>
           </div>
         </article>
       </li class="elements__list">
@@ -107,7 +107,7 @@
           />
           <div class="elements__container">
             <h2 class="elements__title">Куршская коса</h2>
-            <div class="elements__like"></div>
+            <button type="button" class="elements__like" aria-label="Поставить лайк"></button>
           </div>
         </article>
       </li class="elements__list">
@@ -124,16 +124,18 @@
           type="button"
           aria-label="закрыть окно"
         ></button>
-        <form class="popup__form">
+        <form name="editProfile" class="popup__form">
           <input
             type="text"
             name="name"
             class="popup__input popup__input_data_name"
+            placeholder=""
           />
           <input
             type="text"
             name="job"
             class="popup__input popup__input_data_job"
+            placeholder=""
           />
           <button class="popup__save" type="submit" aria-label="сохранить">
             Сохранить
@@ -142,6 +144,6 @@
       </div>
     </div>
 
-    <script src="../mesto/scripts/index.js"></script>
+    <script defer src="../mesto/scripts/index.js"></script>
   </body>
 </html>

@@ -12,7 +12,9 @@ openPopupButton.addEventListener('click', () => {
 
 closePopupButton.addEventListener('click', () => {
     overlayEl.classList.remove('overlay_opened');
-    // закрыть попап без сохранения введеных данных
+    nameInput.value = '';
+    jobInput.value = '';
+    // закрыть попап и очистить инпуты
 })
 
 let nameInput = document.querySelector('.popup__input_data_name');

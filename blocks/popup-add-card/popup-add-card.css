@@ -1,4 +1,4 @@
-.popup {
+.popup-add-card {
     display: none;
     position: relative;
     max-width: 430px;
@@ -9,7 +9,7 @@
 }
 
 @media (max-width: 500px) {
-    .popup {
+    .popup-add-card {
         max-width: 282px;
     }    
 }

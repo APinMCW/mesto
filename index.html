@@ -142,8 +142,36 @@
           </button>
         </form>
       </div>
-    </div>
 
+      <div class="popup-add-card">
+        <h2 class="popup-add-card__title">Новое место</h2>
+        <button
+          class="popup-add-card__close"
+          type="button"
+          aria-label="закрыть окно"
+        ></button>
+        <form name="addCard" class="popup-add-card__form">
+          <input
+            type="text"
+            name="name"
+            class="popup-add-card__input popup-add-card__input_data_name"
+            placeholder="Название"
+          />
+          <input
+            type="text"
+            name="job"
+            class="popup-add-card__input popup-add-card__input_data_url"
+            placeholder="Ссылка на картинку"
+          />
+          <button class="popup-add-card__save" type="submit" aria-label="сохранить">
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+    <template>
+
+    </template>
     <script defer src="./scripts/index.js"></script>
   </body>
 </html>

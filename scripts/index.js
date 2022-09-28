@@ -4,12 +4,21 @@ const closePopupButton = overlayEl.querySelector(".popup__close");
 const saveButton = overlayEl.querySelector(".popup__save");
 const popupProfile = document.querySelector(".popup");
 
+<<<<<<< HEAD
 function overlayClose() {
     overlayEl.classList.remove("overlay_opened");
 }
 
 function overlayOpen() {
     overlayEl.classList.add("overlay_opened");
+=======
+function overlayClose () {
+    overlayEl.classList.remove('overlay_opened');
+}
+
+function overlayOpen () {
+    overlayEl.classList.add('overlay_opened');
+>>>>>>> feature/popup
 }
 
 openPopupButton.addEventListener("click", () => {
@@ -53,10 +62,17 @@ const closeAddCardButton = overlayEl.querySelector(".popup-add-card__close");
 const saveAddCardButton = overlayEl.querySelector(".popup-add-card__save");
 const popupAddCard = overlayEl.querySelector(".popup-add-card");
 
+<<<<<<< HEAD
 openAddCardButton.addEventListener("click", () => {
     overlayOpen();
     popupAddCard.classList.add("popup-add-card_opened");
 });
+=======
+openAddCardButton.addEventListener('click', () => {
+    overlayOpen ();
+    popupAddCard.classList.add('popup-add-card_opened');
+})
+>>>>>>> feature/popup
 
 closeAddCardButton.addEventListener("click", () => {
     overlayClose();
@@ -66,6 +82,7 @@ closeAddCardButton.addEventListener("click", () => {
     // закрыть попап и очистить инпуты
 });
 
+<<<<<<< HEAD
 let addCardInputName = popupAddCard.querySelector(".popup-add-card__input_data_name");
 let addCardInputUrl = popupAddCard.querySelector(".popup-add-card__input_data_url");
 let InputCardName = popupAddCard.querySelector(".popup-add-card__input_data_name");
@@ -105,3 +122,14 @@ function handleLike(event) {
     const likeButton = event.target.closest(".elements__like");
     likeButton.classList.toggle("elements__like_active");
 }
+=======
+function savePopupAddCard (addCardInputName, addCardInputUrl) {
+    const InputCardName = addCardInputName.value;
+    const InputCardUrl = addCardInputUrl.value;
+}
+
+saveAddCardButton.addEventListener('click', render());
+
+let addCardInputName = popupAddCard.querySelector('.popup-add-card__input_data_name');
+let addCardInputUrl = popupAddCard.querySelector('.popup-add-card__input_data_url');
+>>>>>>> feature/popup

@@ -6,11 +6,11 @@ const popupProfile = document.querySelector('.popup');
 
 function overlayClose () {
     overlayEl.classList.remove('overlay_opened');
-};
+}
 
 function overlayOpen () {
     overlayEl.classList.add('overlay_opened');
-};
+}
 
 openPopupButton.addEventListener('click', () => {
     overlayOpen ();
@@ -55,7 +55,7 @@ const popupAddCard = overlayEl.querySelector('.popup-add-card');
 openAddCardButton.addEventListener('click', () => {
     overlayOpen ();
     popupAddCard.classList.add('popup-add-card_opened');
-});
+})
 
 closeAddCardButton.addEventListener('click', () => {
     overlayClose ();
@@ -65,7 +65,12 @@ closeAddCardButton.addEventListener('click', () => {
     // закрыть попап и очистить инпуты
 })
 
+function savePopupAddCard (addCardInputName, addCardInputUrl) {
+    const InputCardName = addCardInputName.value;
+    const InputCardUrl = addCardInputUrl.value;
+}
+
+saveAddCardButton.addEventListener('click', render());
+
 let addCardInputName = popupAddCard.querySelector('.popup-add-card__input_data_name');
 let addCardInputUrl = popupAddCard.querySelector('.popup-add-card__input_data_url');
-let InputCardName = popupAddCard.querySelector('.popup-add-card__input_data_name');
-let InputCardUrl = popupAddCard.querySelector('.popup-add-card__input_data_url');

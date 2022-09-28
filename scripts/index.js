@@ -47,6 +47,7 @@ function popupValue (event) {
 saveButton.addEventListener('click', popupValue);
 // сохранить данные из формы в профиль по клику сохранить и закрыть попап
 
+// Попап для добавления карточки
 const openAddCardButton = document.querySelector('.profile__plus');
 const closeAddCardButton = overlayEl.querySelector('.popup-add-card__close');
 const saveAddCardButton = overlayEl.querySelector('.popup-add-card__save');
@@ -69,3 +70,7 @@ let addCardInputName = popupAddCard.querySelector('.popup-add-card__input_data_n
 let addCardInputUrl = popupAddCard.querySelector('.popup-add-card__input_data_url');
 let InputCardName = popupAddCard.querySelector('.popup-add-card__input_data_name');
 let InputCardUrl = popupAddCard.querySelector('.popup-add-card__input_data_url');
+
+// Добавление новой карточки
+const elements = document.querySelector('.elements');
+const itemTemplate = document.querySelector('.elements-item-template');

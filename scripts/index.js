@@ -52,22 +52,24 @@ const openAddCardButton = document.querySelector(".profile__plus");
 const closeAddCardButton = overlayEl.querySelector(".popup-add-card__close");
 const saveAddCardButton = overlayEl.querySelector(".popup-add-card__save");
 const popupAddCard = overlayEl.querySelector(".popup-add-card");
+const popupAddCardForm = overlayEl.querySelector(".popup-add-card__form");
 
-openAddCardButton.addEventListener('click', () => {
+openAddCardButton.addEventListener('click', () => openModalWindow(popupAddCard));
+
+closeAddCardButton.addEventListener("click", () => closeModalWindow(popupAddCard));
+
+function openModalWindow (modalWindow) {
     overlayOpen ();
-    popupAddCard.classList.add('popup-add-card_opened');
-    saveAddCardButton.addEventListener('click', handleSaveCard);
-})
+    modalWindow.classList.add('popup-add-card_opened');
+    modalWindow.addEventListener('submit', handleSaveCard);
+}
 
-closeAddCardButton.addEventListener("click", () => {
+function closeModalWindow (modalWindow) {
     overlayClose();
-    popupAddCard.classList.remove("popup-add-card_opened");
+    modalWindow.classList.remove("popup-add-card_opened");
     addCardInputName.value = "";
     addCardInputUrl.value = "";
-    // закрыть попап и очистить инпуты
-});
-
-
+}
 
 
 const addCardInputName = popupAddCard.querySelector(".popup-add-card__input_data_name");
@@ -103,7 +105,7 @@ const initialCards = [
 
 
 const elements = document.querySelector(".elements");
-const itemTemplate = document.querySelector(".elements-item-template").content;
+const itemTemplate = document.querySelector(".elements-item-template").content.querySelector(".elements__list");
 const overlayImg = document.querySelector(".overlay-img");
 const popupImg = document.querySelector('.popup-img');
 
@@ -123,22 +125,20 @@ function creatNewCard(value) {
     return newHtmlElement
 }
 
-const startCards = initialCards.map(creatNewCard);
 
-function render() {
-	elements.append(...startCards);
+function render(data) {
+    const newCard = creatNewCard(data);
+	elements.prepend(newCard);
 }
 
 
-function handleSaveCard() {
-    const inputName = addCardInputName.value;
-    const inputLink = addCardInputUrl.value;
-    const newCard = [{
-        name: inputName,
-        link: inputLink
-    }];
-    newCard.forEach(creatNewCard);
-    elements.append(newCard);
+function handleSaveCard(evt) {
+    evt.preventDefault();
+
+    render({
+        name: addCardInputName.value,
+        link: addCardInputUrl.value
+    });
 }
 
 function setListenersForElement(element) {
@@ -170,4 +170,4 @@ function handleImg(event) {
     imgClick
 }
 
-render();
+initialCards.forEach(render);

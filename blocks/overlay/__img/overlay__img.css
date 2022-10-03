@@ -1,4 +1,5 @@
 .overlay__img {
+    display: flex;
     position: fixed;
     top: 0;
     left: 0;
@@ -10,5 +11,5 @@
 
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0s, opacity 0.5s linear;
+    transition: visibility 0.3s, opacity 0.3s linear;
 }

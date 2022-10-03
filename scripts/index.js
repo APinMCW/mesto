@@ -168,7 +168,7 @@ function handleLike(event) {
 function handleImg(event) {
     const imgClick = event.target.closest(".elements__img");
     overlayImg.classList.add('overlay__img_opened');
-    // overlayOpen (overlayImg);
+    // overlayOpen (overlayImg); // пока что не работает, добавляет класс перед текущим, ищу решение
     openModalWindow(popupImg);
     popupImg.src = imgClick.src;
     popupImg.alt = imgClick.alt;

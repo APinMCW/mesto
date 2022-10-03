@@ -32,85 +32,7 @@
       <button type="button" class="profile__plus" aria-label="Добавить карточку"></button>      
     </section>
     <main>
-    <ul class="elements">
-      <li class="elements__list">
-        <article class="elements__element">
-          <img
-            class="elements__img"
-            src="./images/baikal.jpg"
-            alt="байкал"
-          />
-          <div class="elements__container">
-            <h2 class="elements__title">Байкал</h2>
-            <button type="button" class="elements__like" aria-label="Поставить лайк"></button>
-          </div>
-        </article>
-      </li>
-      <li class="elements__list">
-        <article class="elements__element">
-          <img
-            class="elements__img"
-            src="./images/elbrus.jpg"
-            alt="эльбрус"
-          />
-          <div class="elements__container">
-            <h2 class="elements__title">Гора Эльбрус</h2>
-            <button type="button" class="elements__like" aria-label="Поставить лайк"></button>
-          </div>
-        </article>
-      </li>
-      <li class="elements__list">
-        <article class="elements__element">
-          <img
-            class="elements__img"
-            src="./images/dombay.jpg"
-            alt="Карачаево-Черкесская Республика"
-          />
-          <div class="elements__container">
-            <h2 class="elements__title">Карачаево-Черкесская Республика</h2>
-            <button type="button" class="elements__like" aria-label="Поставить лайк"></button>
-          </div>
-        </article>
-      </li>
-      <li class="elements__list">
-        <article class="elements__element">
-          <img
-            class="elements__img"
-            src="./images/teriberka.jpg"
-            alt="Териберка"
-          />
-          <div class="elements__container">
-            <h2 class="elements__title">Териберка</h2>
-            <button type="button" class="elements__like" aria-label="Поставить лайк"></button>
-          </div>
-        </article>
-      </li>
-      <li class="elements__list">
-        <article class="elements__element">
-          <img
-            class="elements__img"
-            src="./images/Nurgush.jpg"
-            alt="Хребет Нургуш"
-          />
-          <div class="elements__container">
-            <h2 class="elements__title">Хребет Нургуш</h2>
-            <button type="button" class="elements__like" aria-label="Поставить лайк"></button>
-          </div>
-        </article>
-      </li>
-      <li class="elements__list">
-        <article class="elements__element">
-          <img
-            class="elements__img"
-            src="./images/curonianSpit.jpg"
-            alt="Куршская коса"
-          />
-          <div class="elements__container">
-            <h2 class="elements__title">Куршская коса</h2>
-            <button type="button" class="elements__like" aria-label="Поставить лайк"></button>
-          </div>
-        </article>
-      </li>
+    <ul class="elements">     
     </ul>
     </main>
     <footer class="footer">
@@ -169,8 +91,18 @@
         </form>
       </div>
     </div>
-    <div class="overlay-img">
-      <img class="popup-img" src="" alt="">
+    <div class="overlay__img">
+      
+        <figure class="modal__preview">
+          <img class="modal__img" src="" alt="">
+          <figcaption class="modal__caption"></figcaption>
+          <button
+            class="popup__close"
+            type="button"
+            aria-label="закрыть окно"
+          ></button>
+        </figure>
+           
     </div>
     <template class="elements-item-template">
       <li class="elements__list">

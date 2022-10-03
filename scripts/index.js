@@ -4,25 +4,25 @@ const closePopupButton = overlayEl.querySelector(".popup__close");
 const saveButton = overlayEl.querySelector(".popup__save");
 const popupProfile = document.querySelector(".popup");
 
-function overlayClose() {
-    overlayEl.classList.remove("overlay_opened");
+function overlayClose(overlay) {
+    overlay.classList.remove("overlay_opened");
 }
 
-function overlayOpen () {
-    overlayEl.classList.add('overlay_opened');
+function overlayOpen (overlay) {
+    overlay.classList.add('overlay_opened');
 }
 
 openPopupButton.addEventListener("click", () => {
-    overlayOpen();
-    popupProfile.classList.add("popup_opened");
+    overlayOpen (overlayEl);
+    openModalWindow(popupProfile);
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
     // открыть попап и записать в интпуты значения из профиля
 });
 
 closePopupButton.addEventListener("click", () => {
-    overlayClose();
-    popupProfile.classList.remove("popup_opened");
+    overlayClose(overlayEl);
+    closeModalWindow(popupProfile);
     nameInput.value = "";
     jobInput.value = "";
     // закрыть попап и очистить инпуты
@@ -39,8 +39,8 @@ function popupValue(event) {
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
     // записать в профиль значения из инпутов
-    overlayClose();
-    popupProfile.classList.remove("popup_opened");
+    overlayClose(overlayEl);
+    closeModalWindow(popupProfile);    
     // закрыть попап
 }
 
@@ -54,23 +54,28 @@ const saveAddCardButton = overlayEl.querySelector(".popup-add-card__save");
 const popupAddCard = overlayEl.querySelector(".popup-add-card");
 const popupAddCardForm = overlayEl.querySelector(".popup-add-card__form");
 
-openAddCardButton.addEventListener('click', () => openModalWindow(popupAddCard));
+openAddCardButton.addEventListener('click', () => {
+    overlayOpen (overlayEl);
+    openModalWindow(popupAddCard);
+    popupAddCardForm.addEventListener('submit', handleSaveCard);
+});
 
-closeAddCardButton.addEventListener("click", () => closeModalWindow(popupAddCard));
+closeAddCardButton.addEventListener("click", closePopupAddCard);
 
-function openModalWindow (modalWindow) {
-    overlayOpen ();
-    modalWindow.classList.add('popup-add-card_opened');
-    modalWindow.addEventListener('submit', handleSaveCard);
-}
-
-function closeModalWindow (modalWindow) {
-    overlayClose();
-    modalWindow.classList.remove("popup-add-card_opened");
+function closePopupAddCard () {
+    overlayClose(overlayEl);
+    closeModalWindow(popupAddCard);
     addCardInputName.value = "";
     addCardInputUrl.value = "";
 }
 
+function openModalWindow (modalWindow) {
+    modalWindow.classList.add('modal_opened');    
+}
+
+function closeModalWindow (modalWindow) {
+    modalWindow.classList.remove("modal_opened");
+}
 
 const addCardInputName = popupAddCard.querySelector(".popup-add-card__input_data_name");
 const addCardInputUrl = popupAddCard.querySelector(".popup-add-card__input_data_url");
@@ -103,12 +108,12 @@ const initialCards = [
     }
   ];
 
-
 const elements = document.querySelector(".elements");
 const itemTemplate = document.querySelector(".elements-item-template").content.querySelector(".elements__list");
-const overlayImg = document.querySelector(".overlay-img");
-const popupImg = document.querySelector('.popup-img');
-
+const overlayImg = document.querySelector(".overlay__img");
+const popupImg = document.querySelector('.modal__img');
+const popupImgCaption = overlayImg.querySelector('.modal__caption');
+const popupImgCloseButton = overlayImg.querySelector('.popup__close');
 
 function creatNewCard(value) {
     const newHtmlElement = itemTemplate.cloneNode(true); // клонируем ноду
@@ -119,18 +124,14 @@ function creatNewCard(value) {
     image.alt = value.name; // устанавливаем атрибут alt для картинки
     image.src = value.link; // устанавливаем атрибут src для картинки
 
-
     setListenersForElement(newHtmlElement); // назначаем листенеры внутри каждого элемента
-    // elements.appendChild(newHtmlElement); // вставляем в DOM
     return newHtmlElement
 }
-
 
 function render(data) {
     const newCard = creatNewCard(data);
 	elements.prepend(newCard);
 }
-
 
 function handleSaveCard(evt) {
     evt.preventDefault();
@@ -139,6 +140,8 @@ function handleSaveCard(evt) {
         name: addCardInputName.value,
         link: addCardInputUrl.value
     });
+
+    closePopupAddCard ();
 }
 
 function setListenersForElement(element) {
@@ -164,10 +167,18 @@ function handleLike(event) {
 
 function handleImg(event) {
     const imgClick = event.target.closest(".elements__img");
-    overlayImg.classList.add('overlay-img_opened');
-    popupImg.classList.add('popup-img_opened');
-    popupImg.src = 
-    imgClick
+    overlayImg.classList.add('overlay__img_opened');
+    // overlayOpen (overlayImg);
+    openModalWindow(popupImg);
+    popupImg.src = imgClick.src;
+    popupImg.alt = imgClick.alt;
+    popupImgCaption.textContent = imgClick.alt;
+    popupImgCloseButton.addEventListener('click', () => {
+        overlayImg.classList.remove('overlay__img_opened');
+        closeModalWindow(popupImg);
+    });
 }
+
+
 
 initialCards.forEach(render);

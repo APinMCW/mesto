@@ -1,5 +1,5 @@
-.overlay_opened {
-    display: flex;
+.modal_opened {
+    display: block;
     visibility: visible;
     opacity: 1;
 }

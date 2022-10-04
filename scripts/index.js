@@ -70,11 +70,11 @@ function closePopupAddCard () {
 }
 
 function openModalWindow (modalWindow) {
-    modalWindow.classList.add('modal_opened');    
+    modalWindow.classList.add('modal-window_opened');    
 }
 
 function closeModalWindow (modalWindow) {
-    modalWindow.classList.remove("modal_opened");
+    modalWindow.classList.remove("modal-window_opened");
 }
 
 const addCardInputName = popupAddCard.querySelector(".popup-add-card__input_data_name");
@@ -110,9 +110,9 @@ const initialCards = [
 
 const elements = document.querySelector(".elements");
 const itemTemplate = document.querySelector(".elements-item-template").content.querySelector(".elements__list");
-const overlayImg = document.querySelector(".overlay__img");
-const popupImg = document.querySelector('.modal__img');
-const popupImgCaption = overlayImg.querySelector('.modal__caption');
+const overlayImg = document.querySelector(".overlay_type_img");
+const popupImg = document.querySelector('.modal-window__img');
+const popupImgCaption = overlayImg.querySelector('.modal-window__caption');
 const popupImgCloseButton = overlayImg.querySelector('.popup__close');
 
 function creatNewCard(value) {
@@ -130,7 +130,7 @@ function creatNewCard(value) {
 
 function render(data) {
     const newCard = creatNewCard(data);
-	elements.prepend(newCard);
+	elements.prepend(newCard);// вставляем созданную карточку в список
 }
 
 function handleSaveCard(evt) {
@@ -157,28 +157,28 @@ function setListenersForElement(element) {
 
 function handleDelete(event) {
     const currentElement = event.target.closest(".elements__list"); // получаем родителя кнопки
-    currentElement.remove();
+    currentElement.remove();// удаляем карточку
 }
 
 function handleLike(event) {
     const likeButton = event.target.closest(".elements__like");
-    likeButton.classList.toggle("elements__like_active");
+    likeButton.classList.toggle("elements__like_active");// переключаем состояние лайка
 }
 
 function handleImg(event) {
     const imgClick = event.target.closest(".elements__img");
-    overlayImg.classList.add('overlay__img_opened');
-    // overlayOpen (overlayImg); // пока что не работает, добавляет класс перед текущим, ищу решение
+    overlayOpen (overlayImg);
     openModalWindow(popupImg);
+    // открыть модалку
     popupImg.src = imgClick.src;
     popupImg.alt = imgClick.alt;
     popupImgCaption.textContent = imgClick.alt;
+    // записать необходимые данные
     popupImgCloseButton.addEventListener('click', () => {
-        overlayImg.classList.remove('overlay__img_opened');
+        overlayClose(overlayImg);
         closeModalWindow(popupImg);
     });
+    // слушатель на кнопку закрытия модалки
 }
-
-
 
 initialCards.forEach(render);

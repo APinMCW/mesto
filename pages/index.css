@@ -30,8 +30,7 @@
 /* Overlay */
 @import url(../blocks/overlay/overlay.css);
 @import url(../blocks/overlay/_opened/overlay_opened.css);
-@import url(../blocks/overlay/__img/overlay__img.css);
-@import url(../blocks/overlay/__img/_opened/overlay__img_opened.css);
+@import url(../blocks/overlay/_type/overlay_type_img.css);
 /* Popup edit profile */
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__title/popup__title.css);
@@ -47,8 +46,8 @@
 @import url(../blocks/popup-add-card/__save/popup-add-card__save.css);
 @import url(../blocks/popup-add-card/__close/popup-add-card__close.css);
 /* Modal window */
-@import url(../blocks/modal/_opened/modal_opened.css);
-@import url(../blocks/modal/__img/modal__img.css);
-@import url(../blocks/modal/__caption/modal__caption.css);
-@import url(../blocks/modal/__preview/modal__preview.css);
-@import url(../blocks/modal/__margin/modal__margin.css);
+@import url(../blocks/modal-window/_opened/modal-window_opened.css);
+@import url(../blocks/modal-window/__img/modal-window__img.css);
+@import url(../blocks/modal-window/__caption/modal-window__caption.css);
+@import url(../blocks/modal-window/modal-window.css);
+@import url(../blocks/modal-window/__margin/modal-window__margin.css);

@@ -1,0 +1,11 @@
+.modal-window__img {
+    position: relative;
+    max-height: 540px;
+}
+
+@media (max-width: 550px) {
+    .modal-window__img {
+        max-width: 240px;
+        max-height: 300px;
+    }
+}

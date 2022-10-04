@@ -49,10 +49,11 @@ saveButton.addEventListener("click", popupValue);
 
 // Попап для добавления карточки
 const openAddCardButton = document.querySelector(".profile__plus");
-const closeAddCardButton = overlayEl.querySelector(".popup-add-card__close");
-const saveAddCardButton = overlayEl.querySelector(".popup-add-card__save");
-const popupAddCard = overlayEl.querySelector(".popup-add-card");
-const popupAddCardForm = overlayEl.querySelector(".popup-add-card__form");
+const popupAddCard = overlayEl.querySelector(".popup_type_add-card");
+const popupAddCardForm = popupAddCard.querySelector(".popup__form");
+const closeAddCardButton = popupAddCard.querySelector(".popup__close");
+const saveAddCardButton = popupAddCard.querySelector(".popup__save");
+
 
 openAddCardButton.addEventListener('click', () => {
     overlayOpen (overlayEl);
@@ -77,8 +78,8 @@ function closeModalWindow (modalWindow) {
     modalWindow.classList.remove("modal-window_opened");
 }
 
-const addCardInputName = popupAddCard.querySelector(".popup-add-card__input_data_name");
-const addCardInputUrl = popupAddCard.querySelector(".popup-add-card__input_data_url");
+const addCardInputName = popupAddCard.querySelector(".popup__input_data_name");
+const addCardInputUrl = popupAddCard.querySelector(".popup__input_data_url");
 // Добавление новой карточки
 
 const initialCards = [
@@ -113,7 +114,7 @@ const itemTemplate = document.querySelector(".elements-item-template").content.q
 const overlayImg = document.querySelector(".overlay_type_img");
 const popupImg = document.querySelector('.modal-window__img');
 const popupImgCaption = overlayImg.querySelector('.modal-window__caption');
-const popupImgCloseButton = overlayImg.querySelector('.popup__close');
+const popupImgCloseButton = overlayImg.querySelector('.modal-window__close');
 
 function creatNewCard(value) {
     const newHtmlElement = itemTemplate.cloneNode(true); // клонируем ноду

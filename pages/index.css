@@ -31,23 +31,17 @@
 @import url(../blocks/overlay/overlay.css);
 @import url(../blocks/overlay/_opened/overlay_opened.css);
 @import url(../blocks/overlay/_type/overlay_type_img.css);
-/* Popup edit profile */
+/* Popup */
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/__save/popup__save.css);
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__input/popup__input.css);
-/* Popup add card */
-@import url(../blocks/popup-add-card/popup-add-card.css);
-@import url(../blocks/popup-add-card/__form/popup-add-card__form.css);
-@import url(../blocks/popup-add-card/__title/popup-add-card__title.css);
-@import url(../blocks/popup-add-card/__input/popup-add-card__input.css);
-@import url(../blocks/popup-add-card/__save/popup-add-card__save.css);
-@import url(../blocks/popup-add-card/__close/popup-add-card__close.css);
 /* Modal window */
 @import url(../blocks/modal-window/_opened/modal-window_opened.css);
 @import url(../blocks/modal-window/__img/modal-window__img.css);
 @import url(../blocks/modal-window/__caption/modal-window__caption.css);
 @import url(../blocks/modal-window/modal-window.css);
 @import url(../blocks/modal-window/__margin/modal-window__margin.css);
+@import url(../blocks/modal-window/__close/modal-window__close.css);

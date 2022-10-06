@@ -1,185 +1,149 @@
-const overlayEl = document.querySelector(".overlay");
-const openPopupButton = document.querySelector(".profile__button");
-const closePopupButton = overlayEl.querySelector(".popup__close");
-const saveButton = overlayEl.querySelector(".popup__save");
-const popupProfile = document.querySelector(".popup");
+const overlayPopupProfile = document.querySelector(".popup_type_profile");
+const popupProfile = overlayPopupProfile.querySelector(
+  ".popup__container_type_profile"
+);
+const buttonEditProfile = document.querySelector(".profile__button");
+const popupEditForm = popupProfile.querySelector(".popup__form");
+const ButtonClosePopupProfile = popupProfile.querySelector(".popup__close");
+const nameInput = popupProfile.querySelector(".popup__input_data_name");
+const profileName = document.querySelector(".profile__name");
+const jobInput = popupProfile.querySelector(".popup__input_data_job");
+const profileJob = document.querySelector(".profile__job");
 
-function overlayClose(overlay) {
-    overlay.classList.remove("overlay_opened");
+function openOverlay(overlay) {
+  overlay.classList.add("popup_opened");
 }
 
-function overlayOpen (overlay) {
-    overlay.classList.add('overlay_opened');
+function closeOverlay(overlay) {
+  overlay.classList.remove("popup_opened");
 }
 
-openPopupButton.addEventListener("click", () => {
-    overlayOpen (overlayEl);
-    openModalWindow(popupProfile);
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileJob.textContent;
-    // открыть попап и записать в интпуты значения из профиля
+buttonEditProfile.addEventListener("click", () => {
+  openOverlay(overlayPopupProfile);
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+  // открыть попап и записать в интпуты значения из профиля
 });
 
-closePopupButton.addEventListener("click", () => {
-    overlayClose(overlayEl);
-    closeModalWindow(popupProfile);
-    nameInput.value = "";
-    jobInput.value = "";
-    // закрыть попап и очистить инпуты
-});
+ButtonClosePopupProfile.addEventListener("click", closePopupProfile);
 
-let nameInput = document.querySelector(".popup__input_data_name");
-let profileName = document.querySelector(".profile__name");
-let jobInput = document.querySelector(".popup__input_data_job");
-let profileJob = document.querySelector(".profile__job");
-
-function popupValue(event) {
-    event.preventDefault();
-
-    profileName.textContent = nameInput.value;
-    profileJob.textContent = jobInput.value;
-    // записать в профиль значения из инпутов
-    overlayClose(overlayEl);
-    closeModalWindow(popupProfile);    
-    // закрыть попап
+function closePopupProfile() {
+  closeOverlay(overlayPopupProfile);
+  popupEditForm.reset();
+  // закрыть попап и очистить инпуты
 }
 
-saveButton.addEventListener("click", popupValue);
+function submitEditFormPopupProfile(event) {
+  event.preventDefault();
+
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+  // записать в профиль значения из инпутов
+  closePopupProfile();
+}
+
+popupEditForm.addEventListener("submit", submitEditFormPopupProfile);
 // сохранить данные из формы в профиль по клику сохранить и закрыть попап
 
 // Попап для добавления карточки
-const openAddCardButton = document.querySelector(".profile__plus");
-const popupAddCard = overlayEl.querySelector(".popup_type_add-card");
+const overlayPopupAddCard = document.querySelector(".popup_type_add-card");
+const buttonAddCard = document.querySelector(".profile__plus");
+const popupAddCard = overlayPopupAddCard.querySelector(
+  ".popup__container_type_add-card"
+);
 const popupAddCardForm = popupAddCard.querySelector(".popup__form");
-const closeAddCardButton = popupAddCard.querySelector(".popup__close");
-const saveAddCardButton = popupAddCard.querySelector(".popup__save");
-
-
-openAddCardButton.addEventListener('click', () => {
-    overlayOpen (overlayEl);
-    openModalWindow(popupAddCard);
-    popupAddCardForm.addEventListener('submit', handleSaveCard);
-});
-
-closeAddCardButton.addEventListener("click", closePopupAddCard);
-
-function closePopupAddCard () {
-    overlayClose(overlayEl);
-    closeModalWindow(popupAddCard);
-    addCardInputName.value = "";
-    addCardInputUrl.value = "";
-}
-
-function openModalWindow (modalWindow) {
-    modalWindow.classList.add('modal-window_opened');    
-}
-
-function closeModalWindow (modalWindow) {
-    modalWindow.classList.remove("modal-window_opened");
-}
-
+const popupAddCardCloseButton = popupAddCard.querySelector(".popup__close");
 const addCardInputName = popupAddCard.querySelector(".popup__input_data_name");
 const addCardInputUrl = popupAddCard.querySelector(".popup__input_data_url");
-// Добавление новой карточки
 
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
+buttonAddCard.addEventListener("click", () => {
+  openOverlay(overlayPopupAddCard);
+  popupAddCardForm.addEventListener("submit", handleSaveCard);
+});
 
-const elements = document.querySelector(".elements");
-const itemTemplate = document.querySelector(".elements-item-template").content.querySelector(".elements__list");
-const overlayImg = document.querySelector(".overlay_type_img");
-const popupImg = document.querySelector('.modal-window__img');
-const popupImgCaption = overlayImg.querySelector('.modal-window__caption');
-const popupImgCloseButton = overlayImg.querySelector('.modal-window__close');
+popupAddCardCloseButton.addEventListener("click", closePopupAddCard);
 
-function creatNewCard(value) {
-    const newHtmlElement = itemTemplate.cloneNode(true); // клонируем ноду
-    const header = newHtmlElement.querySelector(".elements__title");
-    const image = newHtmlElement.querySelector(".elements__img");
-
-    header.textContent = value.name; // устанавливаем заголовок элемента
-    image.alt = value.name; // устанавливаем атрибут alt для картинки
-    image.src = value.link; // устанавливаем атрибут src для картинки
-
-    setListenersForElement(newHtmlElement); // назначаем листенеры внутри каждого элемента
-    return newHtmlElement
+function closePopupAddCard() {
+  closeOverlay(overlayPopupAddCard);
+  popupAddCardForm.reset();
+  // очистить форму
 }
 
-function render(data) {
-    const newCard = creatNewCard(data);
-	elements.prepend(newCard);// вставляем созданную карточку в список
+// Добавление новой карточки
+
+const elementsList = document.querySelector(".elements");
+const cardTemplate = document
+  .querySelector(".elements-item-template")
+  .content.querySelector(".elements__list");
+const overlayPreview = document.querySelector(".popup_type_preview");
+const previewImg = document.querySelector(".popup__img");
+const previewImgCaption = overlayPreview.querySelector(".popup__caption");
+const previewImgCloseButton = overlayPreview.querySelector(".popup__close");
+
+function creatNewCard(value) {
+  const newHtmlElement = cardTemplate.cloneNode(true); // клонируем ноду
+  const header = newHtmlElement.querySelector(".elements__title");
+  const image = newHtmlElement.querySelector(".elements__img");
+
+  header.textContent = value.name; // устанавливаем заголовок элемента
+  image.alt = value.name; // устанавливаем атрибут alt для картинки
+  image.src = value.link; // устанавливаем атрибут src для картинки
+
+  setListenersForCard(newHtmlElement); // назначаем листенеры внутри каждого элемента
+  return newHtmlElement;
+}
+
+function setListenersForCard(card) {
+  const deleteButton = card.querySelector(".elements__trash");
+  deleteButton.addEventListener("click", handleDelete); // передаем ссылку на функцию
+
+  const likeButton = card.querySelector(".elements__like");
+  likeButton.addEventListener("click", handleLike);
+
+  const imgClick = card.querySelector(".elements__img");
+  imgClick.addEventListener("click", handleCardImgClick);
+}
+
+function renderNewCard(data) {
+  const newCard = creatNewCard(data);
+  elementsList.prepend(newCard); // вставляем созданную карточку в список
 }
 
 function handleSaveCard(evt) {
-    evt.preventDefault();
+  evt.preventDefault();
 
-    render({
-        name: addCardInputName.value,
-        link: addCardInputUrl.value
-    });
+  renderNewCard({
+    name: addCardInputName.value,
+    link: addCardInputUrl.value,
+  });
 
-    closePopupAddCard ();
-}
-
-function setListenersForElement(element) {
-    const deleteButton = element.querySelector(".elements__trash");
-    deleteButton.addEventListener("click", handleDelete); // передаем ссылку на функцию
-
-    const likeButton = element.querySelector(".elements__like");
-    likeButton.addEventListener("click", handleLike);
-
-    const imgClick = element.querySelector(".elements__img");
-    imgClick.addEventListener('click', handleImg);
+  closePopupAddCard();
+  popupAddCardForm.removeEventListener("submit", handleSaveCard);
 }
 
 function handleDelete(event) {
-    const currentElement = event.target.closest(".elements__list"); // получаем родителя кнопки
-    currentElement.remove();// удаляем карточку
+  const currentElement = event.target.closest(".elements__list"); // получаем родителя кнопки
+  currentElement.remove(); // удаляем карточку
 }
 
 function handleLike(event) {
-    const likeButton = event.target.closest(".elements__like");
-    likeButton.classList.toggle("elements__like_active");// переключаем состояние лайка
+  const likeButton = event.target;
+  likeButton.classList.toggle("elements__like_active"); // переключаем состояние лайка
 }
 
-function handleImg(event) {
-    const imgClick = event.target.closest(".elements__img");
-    overlayOpen (overlayImg);
-    openModalWindow(popupImg);
-    // открыть модалку
-    popupImg.src = imgClick.src;
-    popupImg.alt = imgClick.alt;
-    popupImgCaption.textContent = imgClick.alt;
-    // записать необходимые данные
-    popupImgCloseButton.addEventListener('click', () => {
-        overlayClose(overlayImg);
-        closeModalWindow(popupImg);
-    });
-    // слушатель на кнопку закрытия модалки
+function handleCardImgClick(event) {
+  const imgClick = event.target.closest(".elements__img");
+  previewImg.src = imgClick.src;
+  previewImg.alt = imgClick.alt;
+  previewImgCaption.textContent = imgClick.alt;
+  // записать необходимые данные
+  openOverlay(overlayPreview);
+  // открыть модалку
 }
 
-initialCards.forEach(render);
+previewImgCloseButton.addEventListener("click", () => {
+  closeOverlay(overlayPreview);
+});
+// слушатель на кнопку закрытия превью
+
+initialCards.forEach(renderNewCard);

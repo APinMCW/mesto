@@ -1,13 +1,10 @@
 const overlayPopupProfile = document.querySelector(".popup_type_profile");
-const popupProfile = overlayPopupProfile.querySelector(
-  ".popup__container_type_profile"
-);
 const buttonEditProfile = document.querySelector(".profile__button");
-const popupEditForm = popupProfile.querySelector(".popup__form");
-const ButtonClosePopupProfile = popupProfile.querySelector(".popup__close");
-const nameInput = popupProfile.querySelector(".popup__input_data_name");
+const popupEditForm = overlayPopupProfile.querySelector(".popup__form");
+const buttonClosePopupProfile = overlayPopupProfile.querySelector(".popup__close");
+const nameInput = overlayPopupProfile.querySelector(".popup__input_data_name");
 const profileName = document.querySelector(".profile__name");
-const jobInput = popupProfile.querySelector(".popup__input_data_job");
+const jobInput = overlayPopupProfile.querySelector(".popup__input_data_job");
 const profileJob = document.querySelector(".profile__job");
 
 function openOverlay(overlay) {
@@ -25,7 +22,7 @@ buttonEditProfile.addEventListener("click", () => {
   // открыть попап и записать в интпуты значения из профиля
 });
 
-ButtonClosePopupProfile.addEventListener("click", closePopupProfile);
+buttonClosePopupProfile.addEventListener("click", closePopupProfile);
 
 function closePopupProfile() {
   closeOverlay(overlayPopupProfile);
@@ -48,13 +45,10 @@ popupEditForm.addEventListener("submit", submitEditFormPopupProfile);
 // Попап для добавления карточки
 const overlayPopupAddCard = document.querySelector(".popup_type_add-card");
 const buttonAddCard = document.querySelector(".profile__plus");
-const popupAddCard = overlayPopupAddCard.querySelector(
-  ".popup__container_type_add-card"
-);
-const popupAddCardForm = popupAddCard.querySelector(".popup__form");
-const popupAddCardCloseButton = popupAddCard.querySelector(".popup__close");
-const addCardInputName = popupAddCard.querySelector(".popup__input_data_name");
-const addCardInputUrl = popupAddCard.querySelector(".popup__input_data_url");
+const popupAddCardForm = overlayPopupAddCard.querySelector(".popup__form");
+const popupAddCardCloseButton = overlayPopupAddCard.querySelector(".popup__close");
+const addCardInputName = overlayPopupAddCard.querySelector(".popup__input_data_name");
+const addCardInputUrl = overlayPopupAddCard.querySelector(".popup__input_data_url");
 
 buttonAddCard.addEventListener("click", () => {
   openOverlay(overlayPopupAddCard);

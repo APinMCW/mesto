@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
     <link rel="stylesheet" href="./pages/index.css" />
-    <script src="./scripts/const.js"></script>
+    <script defer src="./scripts/const.js"></script>
+    <script defer src="./scripts/validate.js"></script>
     <script defer src="./scripts/index.js"></script>
   </head>
   <body class="page">
@@ -48,23 +49,37 @@
           aria-label="закрыть окно"
         ></button>
         <form name="editProfile" class="popup__form">
-          <input
-            type="text"
-            name="name"
-            class="popup__input popup__input_data_name"
-            placeholder="Имя"
-            required
-          />
-          <input
-            type="text"
-            name="job"
-            class="popup__input popup__input_data_job"
-            placeholder="О себе"
-            required
-          />
-          <button class="popup__save" type="submit" aria-label="сохранить">
-            Сохранить
-          </button>
+          <fieldset class="popup__set">
+            <label class="popup__field">
+              <input
+                type="text"
+                name="name"
+                class="popup__input popup__input_data_name"
+                placeholder="Имя"
+                required
+                minlength="2"
+                maxlength="40"
+                id="name-input"
+              />
+              <span class="popup__error name-input-error"></span>
+            </label>
+            <label class="popup__field">
+              <input
+                type="text"
+                name="job"
+                class="popup__input popup__input_data_job"
+                placeholder="О себе"
+                required
+                minlength="2"
+                maxlength="200"
+                id="job-input"
+              />
+              <span class="popup__error job-input-error"></span>
+            </label>
+            <button class="popup__button" type="submit" aria-label="сохранить">
+              Сохранить
+            </button>
+          </fieldset>
         </form>
       </div>
     </div>
@@ -77,23 +92,35 @@
           aria-label="закрыть окно"
         ></button>
         <form name="addCard" class="popup__form">
-          <input
-            type="text"
-            name="name"
-            class="popup__input popup__input_data_name"
-            placeholder="Название"
-            required
-          />
-          <input
-            type="url"
-            name="url"
-            class="popup__input popup__input_data_url"
-            placeholder="Ссылка на картинку"
-            required
-          />
-          <button class="popup__save" type="submit" aria-label="сохранить">
-            Сохранить
-          </button>
+          <fieldset class="popup__set">
+            <label class="popup__field">
+              <input
+                type="text"
+                name="name"
+                class="popup__input popup__input_data_name"
+                placeholder="Название"
+                required
+                minlength="2"
+                maxlength="30"
+                id="cardName-input"
+              />
+              <span class="popup__error cardName-input-error"></span>
+            </label>
+            <label class="popup__field">
+              <input
+                type="url"
+                name="url"
+                class="popup__input popup__input_data_url"
+                placeholder="Ссылка на картинку"
+                required
+                id="url-input"
+              />
+              <span class="popup__error url-input-error"></span>
+            </label>
+            <button class="popup__button" type="submit" aria-label="сохранить">
+              Сохранить
+            </button>
+          </fieldset>
         </form>
       </div>
     </div>

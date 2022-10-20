@@ -141,3 +141,27 @@ previewImgCloseButton.addEventListener("click", () => {
 // слушатель на кнопку закрытия превью
 
 initialCards.forEach(renderNewCard);
+
+
+
+const overlayAll = Array.from(
+  document.querySelectorAll(selectors.popupSelector)
+);
+overlayAll.forEach((overlay) => {
+  document.addEventListener("keydown", closeByEsc);
+  overlay.addEventListener("mousedown", closeByClick);
+});
+
+function closeByClick(evt) {
+  const overlay = evt.target;
+  if (evt.target === evt.currentTarget) {
+    closeOverlay(overlay);
+  }
+}
+
+function closeByEsc(evt) {
+  const overlay = 
+  if (evt.key === "Escape") {
+    closeOverlay(overlay);
+  }
+}

@@ -180,7 +180,6 @@ function clearInputError() {
  const inputList = Array.from(
     document.querySelectorAll(".popup__input_type_error")
   );
-  console.log(inputList)
   inputList.forEach((input) => {
     hideInputError(
       input,

@@ -161,6 +161,8 @@ function closeByClick(evt) {
   if (evt.target === evt.currentTarget) {
     closeOverlay(overlay);
     clearInputError();
+    const form = overlay.querySelector('.popup__form');
+    form.reset();
   }
 }
 
@@ -169,6 +171,8 @@ function closeByEsc(evt) {
     const overlay = document.querySelector(".popup_opened");
     closeOverlay(overlay);
     clearInputError();
+    const form = overlay.querySelector('.popup__form');
+    form.reset();
   }
 }
 

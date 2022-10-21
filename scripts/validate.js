@@ -1,30 +1,30 @@
 // включение валидации вызовом enableValidation
 // все настройки передаются при вызове
 
-const showInputError = (
+function showInputError(
   inputElement,
   errorMessage,
   spanSelector,
   inputErrorClass,
   errorClass
-) => {
+) {
   const errorElement = inputElement.parentNode.querySelector(spanSelector);
   inputElement.classList.add(inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(errorClass);
-};
+}
 
-const hideInputError = (
+function hideInputError(
   inputElement,
   spanSelector,
   inputErrorClass,
   errorClass
-) => {
+) {
   const errorElement = inputElement.parentNode.querySelector(spanSelector);
   inputElement.classList.remove(inputErrorClass);
   errorElement.classList.remove(errorClass);
   errorElement.textContent = "";
-};
+}
 
 function setSubmitButton(button, state, inactiveButtonClass) {
   if (state) {
@@ -77,7 +77,6 @@ const setEventListeners = (formElement, inputSelector, selectors) => {
   });
 };
 
-
 function enableValidation(selectors) {
   const formList = Array.from(
     document.querySelectorAll(selectors.formSelector)
@@ -89,12 +88,9 @@ function enableValidation(selectors) {
     });
     setEventListeners(formElement, selectors.inputSelector, selectors);
   });
-
- 
 }
 
 enableValidation({
-  
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__button",

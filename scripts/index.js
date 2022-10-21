@@ -1,7 +1,8 @@
 const overlayPopupProfile = document.querySelector(".popup_type_profile");
 const buttonEditProfile = document.querySelector(".profile__button");
 const popupEditForm = overlayPopupProfile.querySelector(".popup__form");
-const buttonClosePopupProfile = overlayPopupProfile.querySelector(".popup__close");
+const buttonClosePopupProfile =
+  overlayPopupProfile.querySelector(".popup__close");
 const nameInput = overlayPopupProfile.querySelector(".popup__input_data_name");
 const profileName = document.querySelector(".profile__name");
 const jobInput = overlayPopupProfile.querySelector(".popup__input_data_job");
@@ -28,6 +29,7 @@ function closePopupProfile() {
   closeOverlay(overlayPopupProfile);
   popupEditForm.reset();
   // закрыть попап и очистить инпуты
+  clearInputError();
 }
 
 function submitEditFormPopupProfile(event) {
@@ -46,9 +48,14 @@ popupEditForm.addEventListener("submit", submitEditFormPopupProfile);
 const overlayPopupAddCard = document.querySelector(".popup_type_add-card");
 const buttonAddCard = document.querySelector(".profile__plus");
 const popupAddCardForm = overlayPopupAddCard.querySelector(".popup__form");
-const popupAddCardCloseButton = overlayPopupAddCard.querySelector(".popup__close");
-const addCardInputName = overlayPopupAddCard.querySelector(".popup__input_data_name");
-const addCardInputUrl = overlayPopupAddCard.querySelector(".popup__input_data_url");
+const popupAddCardCloseButton =
+  overlayPopupAddCard.querySelector(".popup__close");
+const addCardInputName = overlayPopupAddCard.querySelector(
+  ".popup__input_data_name"
+);
+const addCardInputUrl = overlayPopupAddCard.querySelector(
+  ".popup__input_data_url"
+);
 
 buttonAddCard.addEventListener("click", () => {
   openOverlay(overlayPopupAddCard);
@@ -61,6 +68,7 @@ function closePopupAddCard() {
   closeOverlay(overlayPopupAddCard);
   popupAddCardForm.reset();
   // очистить форму
+  clearInputError();
 }
 
 // Добавление новой карточки
@@ -142,11 +150,7 @@ previewImgCloseButton.addEventListener("click", () => {
 
 initialCards.forEach(renderNewCard);
 
-
-
-const overlayAll = Array.from(
-  document.querySelectorAll(selectors.popupSelector)
-);
+const overlayAll = Array.from(document.querySelectorAll(".popup"));
 overlayAll.forEach((overlay) => {
   document.addEventListener("keydown", closeByEsc);
   overlay.addEventListener("mousedown", closeByClick);
@@ -156,12 +160,29 @@ function closeByClick(evt) {
   const overlay = evt.target;
   if (evt.target === evt.currentTarget) {
     closeOverlay(overlay);
+    clearInputError();
   }
 }
 
 function closeByEsc(evt) {
-  const overlay = 
   if (evt.key === "Escape") {
+    const overlay = document.querySelector(".popup_opened");
     closeOverlay(overlay);
+    clearInputError();
   }
+}
+
+function clearInputError() {
+ const inputList = Array.from(
+    document.querySelectorAll(".popup__input_type_error")
+  );
+  console.log(inputList)
+  inputList.forEach((input) => {
+    hideInputError(
+      input,
+      ".popup__error",
+      "popup__input_type_error",
+      "popup__error_visible"
+    );
+  });
 }

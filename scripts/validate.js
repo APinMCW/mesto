@@ -81,16 +81,6 @@ function enableValidation(selectors) {
   });
 }
 
-enableValidation({
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  spanSelector: ".popup__error",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
-});
-
 function hasInvalidInput(inputList) {
   return inputList.some((inputList) => {
     return !inputList.validity.valid;

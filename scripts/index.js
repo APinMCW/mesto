@@ -60,7 +60,7 @@ function submitEditFormPopupProfile(event) {
 function closePopupAddCard() {
   closeOverlay(overlayPopupAddCard);
   popupAddCardForm.reset();
-  // очистить форму  
+  // очистить форму
 }
 
 // Добавление новой карточки
@@ -115,7 +115,7 @@ function handleLike(event) {
   buttonLike.classList.toggle("elements__like_active"); // переключаем состояние лайка
 }
 
-function handleCardImgClick(imgClick) {  
+function handleCardImgClick(imgClick) {
   previewImg.src = imgClick.src;
   previewImg.alt = imgClick.alt;
   previewImgCaption.textContent = imgClick.alt;
@@ -159,6 +159,7 @@ buttonEditProfile.addEventListener("click", () => {
   clearInputError();
   const form = overlayPopupProfile.querySelector(".popup__form");
   form.reset();
+  enableValidation(settings);
   openOverlay(overlayPopupProfile);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
@@ -173,6 +174,7 @@ buttonAddCard.addEventListener("click", () => {
   clearInputError();
   const form = overlayPopupAddCard.querySelector(".popup__form");
   form.reset();
+  enableValidation(settings);
   openOverlay(overlayPopupAddCard);
   popupAddCardForm.addEventListener("submit", handleSaveCard);
 });

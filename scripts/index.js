@@ -33,13 +33,11 @@ const previewImgCloseButton = overlayPreview.querySelector(".popup__close");
 function openOverlay(overlay) {
   overlay.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEsc);
-  overlay.addEventListener("mousedown", closeByClick);
 }
 
 function closeOverlay(overlay) {
   overlay.classList.remove("popup_opened");
   document.removeEventListener("keydown", closeByEsc);
-  overlay.removeEventListener("mousedown", closeByClick);
 }
 
 function closePopupProfile() {
@@ -102,7 +100,6 @@ function handleSaveCard(evt) {
   });
 
   closePopupAddCard();
-  popupAddCardForm.removeEventListener("submit", handleSaveCard);
 }
 
 function handleDelete(event) {
@@ -140,47 +137,39 @@ function closeByEsc(evt) {
   }
 }
 
-function clearInputError() {
-  const inputList = Array.from(
-    document.querySelectorAll(".popup__input_type_error")
-  );
-  inputList.forEach((input) => {
-    hideInputError(
-      input,
-      ".popup__error",
-      "popup__input_type_error",
-      "popup__error_visible"
-    );
-  });
-}
 //устанавливаем слушатели
 // попап: редактирование профиля
 buttonEditProfile.addEventListener("click", () => {
   clearInputError();
-  const form = overlayPopupProfile.querySelector(".popup__form");
-  form.reset();
-  enableValidation(settings);
+  popupEditForm.reset();
   openOverlay(overlayPopupProfile);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   // открыть попап и записать в интпуты значения из профиля
-
-  popupEditForm.addEventListener("submit", submitEditFormPopupProfile);
 });
+
+popupEditForm.addEventListener("submit", submitEditFormPopupProfile);
 
 buttonClosePopupProfile.addEventListener("click", closePopupProfile);
 // попап: добавление карточки
 buttonAddCard.addEventListener("click", () => {
   clearInputError();
-  const form = overlayPopupAddCard.querySelector(".popup__form");
-  form.reset();
-  enableValidation(settings);
+  popupAddCardForm.reset();
+  const button = popupAddCardForm.querySelector(settings.submitButtonSelector);
+  disableSubmitButton(button, settings);
   openOverlay(overlayPopupAddCard);
-  popupAddCardForm.addEventListener("submit", handleSaveCard);
 });
+
+popupAddCardForm.addEventListener("submit", handleSaveCard);
 
 popupAddCardCloseButton.addEventListener("click", closePopupAddCard);
 // попап: превью
 previewImgCloseButton.addEventListener("click", () => {
   closeOverlay(overlayPreview); // слушатель на кнопку закрытия превью
+});
+
+const overlayAll = Array.from(document.querySelectorAll(".popup"));
+
+overlayAll.forEach((overlay) => {
+  overlay.addEventListener("mousedown", closeByClick);
 });

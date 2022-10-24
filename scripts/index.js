@@ -19,6 +19,9 @@ const inputNameAddCard = overlayPopupAddCard.querySelector(
 const inputUrlAddCard = overlayPopupAddCard.querySelector(
   ".popup__input_data_url"
 );
+const buttonSubmitFormAddCard = popupAddCardForm.querySelector(
+  settings.submitButtonSelector
+);
 // переменные для функции добавления карточки
 const elementsList = document.querySelector(".elements");
 const cardTemplate = document
@@ -155,8 +158,7 @@ buttonClosePopupProfile.addEventListener("click", closePopupProfile);
 buttonAddCard.addEventListener("click", () => {
   clearInputError();
   popupAddCardForm.reset();
-  const button = popupAddCardForm.querySelector(settings.submitButtonSelector);
-  disableSubmitButton(button, settings);
+  disableSubmitButton(buttonSubmitFormAddCard, settings);
   openOverlay(overlayPopupAddCard);
 });
 

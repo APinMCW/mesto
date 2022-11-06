@@ -1,3 +1,8 @@
+import { initialCards, settings } from "./const.js";
+import { Card } from "./Card.js";
+// import { FormValidator } from "./FormValidator.js";
+
+
 const overlayPopupProfile = document.querySelector(".popup_type_profile");
 const buttonEditProfile = document.querySelector(".profile__button");
 const popupEditForm = overlayPopupProfile.querySelector(".popup__form");
@@ -24,12 +29,12 @@ const buttonSubmitFormAddCard = popupAddCardForm.querySelector(
 );
 // переменные для функции добавления карточки
 const elementsList = document.querySelector(".elements");
-const cardTemplate = document
-  .querySelector(".elements-item-template")
-  .content.querySelector(".elements__list");
+// const cardTemplate = document
+//   .querySelector(".elements-item-template")
+//   .content.querySelector(".elements__list");
 const overlayPreview = document.querySelector(".popup_type_preview");
-const previewImg = document.querySelector(".popup__img");
-const previewImgCaption = overlayPreview.querySelector(".popup__caption");
+// const previewImg = document.querySelector(".popup__img");
+// const previewImgCaption = overlayPreview.querySelector(".popup__caption");
 const previewImgCloseButton = overlayPreview.querySelector(".popup__close");
 
 //функции открытия оверлея
@@ -65,33 +70,34 @@ function closePopupAddCard() {
 }
 
 // Добавление новой карточки
-function creatNewCard(card) {
-  const newHtmlElement = cardTemplate.cloneNode(true); // клонируем ноду
-  const header = newHtmlElement.querySelector(".elements__title");
-  const image = newHtmlElement.querySelector(".elements__img");
+// function creatNewCard(card) {
+//   const newHtmlElement = cardTemplate.cloneNode(true); // клонируем ноду
+//   const header = newHtmlElement.querySelector(".elements__title");
+//   const image = newHtmlElement.querySelector(".elements__img");
 
-  header.textContent = card.name; // устанавливаем заголовок элемента
-  image.alt = card.name; // устанавливаем атрибут alt для картинки
-  image.src = card.link; // устанавливаем атрибут src для картинки
+//   header.textContent = card.name; // устанавливаем заголовок элемента
+//   image.alt = card.name; // устанавливаем атрибут alt для картинки
+//   image.src = card.link; // устанавливаем атрибут src для картинки
 
-  setListenersForCard(newHtmlElement); // назначаем листенеры внутри каждого элемента
-  return newHtmlElement;
-}
+//   setListenersForCard(newHtmlElement); // назначаем листенеры внутри каждого элемента
+//   return newHtmlElement;
+// }
 
-function setListenersForCard(card) {
-  const buttonDelete = card.querySelector(".elements__trash");
-  buttonDelete.addEventListener("click", handleDelete); // передаем ссылку на функцию
+// function setListenersForCard(card) {
+//   const buttonDelete = card.querySelector(".elements__trash");
+//   buttonDelete.addEventListener("click", handleDelete); // передаем ссылку на функцию
 
-  const buttonLike = card.querySelector(".elements__like");
-  buttonLike.addEventListener("click", handleLike);
+//   const buttonLike = card.querySelector(".elements__like");
+//   buttonLike.addEventListener("click", handleLike);
 
-  const imgClick = card.querySelector(".elements__img");
-  imgClick.addEventListener("click", () => handleCardImgClick(imgClick));
-}
+//   const imgClick = card.querySelector(".elements__img");
+//   imgClick.addEventListener("click", () => handleCardImgClick(imgClick));
+// }
 
 function renderNewCard(data) {
-  const newCard = creatNewCard(data);
-  elementsList.prepend(newCard); // вставляем созданную карточку в список
+  const newCard = new Card (data, ".elements-item-template");
+  const card = newCard.creatCard();
+  elementsList.prepend(card); // вставляем созданную карточку в список
 }
 
 function handleSaveCard(evt) {
@@ -105,24 +111,7 @@ function handleSaveCard(evt) {
   closePopupAddCard();
 }
 
-function handleDelete(event) {
-  const currentElement = event.target.closest(".elements__list"); // получаем родителя кнопки
-  currentElement.remove(); // удаляем карточку
-}
 
-function handleLike(event) {
-  const buttonLike = event.target;
-  buttonLike.classList.toggle("elements__like_active"); // переключаем состояние лайка
-}
-
-function handleCardImgClick(imgClick) {
-  previewImg.src = imgClick.src;
-  previewImg.alt = imgClick.alt;
-  previewImgCaption.textContent = imgClick.alt;
-  // записать необходимые данные
-  openOverlay(overlayPreview);
-  // открыть модалку
-}
 //создаем первоначальные 6 карточек
 initialCards.forEach(renderNewCard);
 

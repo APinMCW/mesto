@@ -2,7 +2,6 @@ import { initialCards, settings } from "./const.js";
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 
-
 const overlayPopupProfile = document.querySelector(".popup_type_profile");
 const buttonEditProfile = document.querySelector(".profile__button");
 const popupEditForm = overlayPopupProfile.querySelector(".popup__form");
@@ -23,9 +22,6 @@ const inputNameAddCard = overlayPopupAddCard.querySelector(
 );
 const inputUrlAddCard = overlayPopupAddCard.querySelector(
   ".popup__input_data_url"
-);
-const buttonSubmitFormAddCard = popupAddCardForm.querySelector(
-  settings.submitButtonSelector
 );
 // переменные для функции добавления карточки
 const elementsList = document.querySelector(".elements");
@@ -67,7 +63,7 @@ function closePopupAddCard() {
 }
 
 function renderNewCard(data) {
-  const newCard = new Card (data, ".elements-item-template", handleCardImgClick);
+  const newCard = new Card(data, ".elements-item-template", handleCardImgClick);
   const card = newCard.creatCard();
   elementsList.prepend(card); // вставляем созданную карточку в список
 }
@@ -111,7 +107,9 @@ function closeByEsc(evt) {
 //устанавливаем слушатели
 // попап: редактирование профиля
 buttonEditProfile.addEventListener("click", () => {
-  clearInputError();
+  const profileEditFormValidation = new FormValidator(popupEditForm, settings);
+  profileEditFormValidation.enableValidation();
+  profileEditFormValidation.clearInputError();
   popupEditForm.reset();
   openOverlay(overlayPopupProfile);
   nameInput.value = profileName.textContent;
@@ -124,9 +122,11 @@ popupEditForm.addEventListener("submit", submitEditFormPopupProfile);
 buttonClosePopupProfile.addEventListener("click", closePopupProfile);
 // попап: добавление карточки
 buttonAddCard.addEventListener("click", () => {
-  clearInputError();
+  const AddCardFormValidation = new FormValidator(popupAddCardForm, settings);
+  AddCardFormValidation.enableValidation();
+  AddCardFormValidation.clearInputError();
   popupAddCardForm.reset();
-  disableSubmitButton(buttonSubmitFormAddCard, settings);
+  AddCardFormValidation.disableSubmitButton();
   openOverlay(overlayPopupAddCard);
 });
 

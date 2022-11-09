@@ -18,8 +18,12 @@ export class Card {
   creatCard() {
     this._newCard = this._getCard();
     this._newCard.querySelector(".elements__title").textContent = this._name;
-    this._newCard.querySelector(".elements__img").alt = this._name;
-    this._newCard.querySelector(".elements__img").src = this._link;
+
+    this._buttonLike = this._newCard.querySelector(".elements__like");
+    this._img = this._newCard.querySelector(".elements__img");
+
+    this._img.alt = this._name;
+    this._img.src = this._link;
 
     this._setListeners();
 
@@ -30,20 +34,18 @@ export class Card {
     const buttonDelete = this._newCard.querySelector(".elements__trash");
     buttonDelete.addEventListener("click", () => this._handleDelete());
 
-    const buttonLike = this._newCard.querySelector(".elements__like");
-    buttonLike.addEventListener("click", () => this._handleLike());
+    this._buttonLike.addEventListener("click", () => this._handleLike());
 
-    const imgClick = this._newCard.querySelector(".elements__img");
-    imgClick.addEventListener("click", () => this._openPopupImg(imgClick));
+    this._img.addEventListener("click", () =>
+      this._openPopupImg(this._name, this._link)
+    );
   }
 
   _handleDelete() {
-    const currentElement = this._newCard.closest(".elements__list"); // получаем родителя кнопки
-    currentElement.remove(); // удаляем карточку
+    this._newCard.remove(); // удаляем карточку
   }
 
   _handleLike() {
-    const buttonLike = this._newCard.querySelector(".elements__like");
-    buttonLike.classList.toggle("elements__like_active"); // переключаем состояние лайка
+    this._buttonLike.classList.toggle("elements__like_active"); // переключаем состояние лайка
   }
 }

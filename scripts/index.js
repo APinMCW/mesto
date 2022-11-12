@@ -88,7 +88,7 @@ function handleCardImgClick(name, link) {
 initialCards.forEach(renderNewCard);
 
 function closeByClick(evt) {
-  if (evt.which == 1) {
+  if (evt.target === evt.currentTarget || evt.which == 1) {
     closePopup(evt.target);
   }
 }
@@ -134,8 +134,8 @@ previewImgCloseButton.addEventListener("click", () => {
   closePopup(popupPreview); // слушатель на кнопку закрытия превью
 });
 
-const AllPopups = Array.from(document.querySelectorAll(".popup"));
+const allPopups = Array.from(document.querySelectorAll(".popup"));
 
-AllPopups.forEach((popup) => {
-  popup.addEventListener("mousedown", closeByClick);
+allPopups.forEach((popup) => {
+  popup.addEventListener("click", closeByClick);
 });

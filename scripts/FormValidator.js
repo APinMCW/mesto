@@ -1,6 +1,6 @@
 export class FormValidator {
-  constructor(form, settings) {
-    this._form = form;
+  constructor(popup, settings) {
+    this._form = popup.querySelector(".popup__form")
     this._inputSelector = settings.inputSelector;
     this._inputErrorClass = settings.inputErrorClass;
     this._submitButtonSelector = settings.submitButtonSelector;

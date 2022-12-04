@@ -10,14 +10,14 @@ export class UserInfo {
     //подставить в форму при открытии.
     const userInfo = {
       userName: this._profileName.textContent,
-      userabout: this._profileJob.textContent,
+      userAbout: this._profileJob.textContent,
     };
     return userInfo;
   }
 
   setUserInfo() {
     //принимает новые данные пользователя и добавляет их на страницу
-    this._profileName.textContent = this._userName;
-    this._profileJob.textContent = this._aboutMe;
+    this._profileName.textContent = userInfo.userName;
+    this._profileJob.textContent = userInfo.userAbout;
   }
 }

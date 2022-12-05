@@ -15,16 +15,18 @@ export class Popup {
     document.removeEventListener("keydown", this._handleEscCloseRef);
   }
 
-  _handleEscClose() {
+  _handleEscClose(evt) {
     if (evt.key === "Escape") {
       this.close();
     }
   }
 
   setEventListeners() {
-    this._buttonClose.addEventListener("click", this.close());
-    this._popup.addEventListener("click", () => {
-      if (evt.target === evt.currentTarget || evt.which == 1) {
+    this._buttonClose.addEventListener("click", () => {
+      this.close();
+    });
+    this._popup.addEventListener("click", (evt) => {
+      if (evt.target === evt.currentTarget && evt.which == 1) {
         this.close();
       }
     });

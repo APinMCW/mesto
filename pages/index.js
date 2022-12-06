@@ -7,10 +7,7 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 
-const popupProfile = document.querySelector(".popup_type_profile");
 const buttonEditProfile = document.querySelector(".profile__button");
-const nameInput = popupProfile.querySelector(".popup__input_data_name");
-const jobInput = popupProfile.querySelector(".popup__input_data_job");
 const buttonAddCard = document.querySelector(".profile__plus");
 
 // функции
@@ -78,8 +75,7 @@ popupPreview.setEventListeners();
 buttonEditProfile.addEventListener("click", () => {
   profileEditFormValidation.clearInputError();
   const userData = userInfo.getUserInfo();
-  nameInput.value = userData.userName;
-  jobInput.value = userData.userAbout;
+  popupProfileEdit.setInputValues(userData);  
   popupProfileEdit.open();
 });
 

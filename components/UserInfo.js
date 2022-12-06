@@ -9,8 +9,8 @@ export class UserInfo {
     //Этот метод пригодится когда данные пользователя нужно будет
     //подставить в форму при открытии.
     const userInfo = {
-      userName: this._profileName.textContent,
-      userAbout: this._profileJob.textContent,
+      name: this._profileName.textContent,
+      job: this._profileJob.textContent,
     };
     return userInfo;
   }

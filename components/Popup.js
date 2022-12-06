@@ -26,6 +26,8 @@ export class Popup {
       this.close();
     });
     this._popup.addEventListener("mousedown", (evt) => {
+      // закрываем попап по нажатию на оверлей левой кнопкой мыши,
+      // чтобы при нажатии правой всплывало контекстное меню
       if (evt.target === evt.currentTarget && evt.button === 0) {
         this.close();
       }

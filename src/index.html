@@ -143,6 +143,24 @@
         ></button>
       </div>
     </div>
+    <div class="popup popup_type_confirmation">
+      <div class="popup__container popup__container_type_confirmation">
+        <h2 class="popup__title">Вы уверены?</h2>
+        <button
+              class="popup__button popup__button_disabled"
+              type="submit"
+              aria-label="да"
+              disabled
+            >
+              Да
+            </button>
+        <button
+          class="popup__close"
+          type="button"
+          aria-label="закрыть окно"
+        ></button>
+      </div>
+    </div>
     <template class="elements-item-template">
       <li class="elements__list">
         <article class="elements__element">
@@ -154,11 +172,14 @@
           ></button>
           <div class="elements__container">
             <h2 class="elements__title"></h2>
-            <button
-              type="button"
-              class="elements__like"
-              aria-label="Сердечко"
-            ></button>
+            <div class="elements__like-container">
+              <button
+                type="button"
+                class="elements__like"
+                aria-label="Сердечко"
+              ></button>
+              <span class="elements__like-count">1</span>
+            </div>
           </div>
         </article>
       </li>

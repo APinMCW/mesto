@@ -8,20 +8,28 @@ import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { Api } from "../utils/Api.js";
 import { apiConfig } from "../utils/apiConfig.js";
+import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
 
 const buttonEditProfile = document.querySelector(".profile__button");
 const buttonAddCard = document.querySelector(".profile__plus");
+const selfId = '99286262-2a3b-4573-b8ec-05fef5373f68';
 
 // функции
 function handleCardClick(name, link) {
   popupPreview.open(name, link);
 }
 
+function handleDeleteCard () {
+  popupConfirmation.open()
+}
+
 function createCard(item) {
   const cardInstance = new Card(
     item,
     ".elements-item-template",
-    handleCardClick
+    handleCardClick,
+    selfId,
+    handleDeleteCard
   );
   const cardElement = cardInstance.creatCard();
   return cardElement;
@@ -29,6 +37,16 @@ function createCard(item) {
 
 // создаем экземпляры класов
 const popupPreview = new PopupWithImage(".popup_type_preview");
+
+const api = new Api(apiConfig);
+
+const popupConfirmation = new PopupWithConfirmation({
+  popupSelector: 'popup_type_confirmation',
+  handleSubmit: (card) => {
+    api.delCard(card._id)
+    popupConfirmation.close();
+  }
+})
 
 const cardList = new Section(
   {

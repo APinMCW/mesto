@@ -71,4 +71,49 @@ export default class Api {
       }
     });
   }
+
+  delCard(cardId) {
+    return fetch(`${this._url}${"cards"}/${cardId}`, {
+        headers: this._headers,
+        method: "DELETE"        
+      }).then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return Promise.reject(
+            `Ошибка: ${response.status} ${response.statusText}`
+          );
+        }
+      });
+  }
+
+  setCardLike (cardId) {
+    return fetch(`${this._url}${"cards"}/${cardId}${'likes'}`, {
+        headers: this._headers,
+        method: "PUT"        
+      }).then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return Promise.reject(
+            `Ошибка: ${response.status} ${response.statusText}`
+          );
+        }
+      });
+  }
+
+  delCardLike (cardId) {
+    return fetch(`${this._url}${"cards"}/${cardId}${'likes'}`, {
+        headers: this._headers,
+        method: "DELETE"        
+      }).then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return Promise.reject(
+            `Ошибка: ${response.status} ${response.statusText}`
+          );
+        }
+      });
+  }
 }

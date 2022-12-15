@@ -116,4 +116,20 @@ export default class Api {
         }
       });
   }
+
+  setAvatar (avatar) {
+    return fetch(`${this._url}${"users/me/avatar"}`, {
+      headers: this._headers,
+      method: "PATCH",
+      body: JSON.stringify({ avatar })
+    }).then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        return Promise.reject(
+          `Ошибка: ${response.status} ${response.statusText}`
+        );
+      }
+    });
+  }
 }

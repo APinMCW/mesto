@@ -8,11 +8,26 @@
   </head>
   <body class="page">
     <header class="header">
-      <img class="header__logo" src='<%=require("../images/logo.svg")%>' alt="Лого Место" />
+      <img
+        class="header__logo"
+        src='<%=require("../images/logo.svg")%>'
+        alt="Лого Место"
+      />
       <div class="header__line"></div>
     </header>
     <section class="profile">
-      <img class="profile__avatar" src='<%=require("../images/Avatar.png")%>' alt="Аватарка" />
+      <div class="profile__container">
+        <img
+          class="profile__avatar"
+          src='<%=require("../images/Avatar.png")%>'
+          alt="Аватарка"
+        />
+        <button
+          type="button"
+          class="profile__button_avatar"
+          aria-label="Редактировать аватар"
+        ></button>
+      </div>
       <div class="profile__section">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -147,13 +162,13 @@
       <div class="popup__container popup__container_type_confirmation">
         <h2 class="popup__title">Вы уверены?</h2>
         <button
-              class="popup__button popup__button_disabled"
-              type="submit"
-              aria-label="да"
-              disabled
-            >
-              Да
-            </button>
+          class="popup__button popup__button_disabled"
+          type="submit"
+          aria-label="да"
+          disabled
+        >
+          Да
+        </button>
         <button
           class="popup__close"
           type="button"

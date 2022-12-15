@@ -12,6 +12,7 @@ import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
 
 const buttonEditProfile = document.querySelector(".profile__button");
 const buttonAddCard = document.querySelector(".profile__plus");
+const avatar = document.querySelector('.profile__avatar');
 const selfId = '99286262-2a3b-4573-b8ec-05fef5373f68';
 
 // функции
@@ -41,7 +42,7 @@ const popupPreview = new PopupWithImage(".popup_type_preview");
 const api = new Api(apiConfig);
 
 const popupConfirmation = new PopupWithConfirmation({
-  popupSelector: 'popup_type_confirmation',
+  popupSelector: '.popup_type_confirmation',
   handleSubmit: (card) => {
     api.delCard(card._id)
     popupConfirmation.close();
@@ -64,6 +65,14 @@ const popupAddCard = new PopupWithForm({
     popupAddCard.close();
   },
 });
+
+const popupSetAvatar = new PopupWithForm({
+  popupSelector: '.popup_type_set-avatar',
+  handleSubmit: (item) => {
+    avatar.src = item.link;
+    popupSetAvatar/close();
+  }
+})
 
 const addCardFormValidation = new FormValidator(popupAddCard, settings);
 

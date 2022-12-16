@@ -1,15 +1,17 @@
 export class Card {
-  constructor(
+  constructor({
     data,
     templateSelector,
     handleCardClick,
     selfId,
-    handleDelete
-  ) {
+    handleDelete,
+    handleLike,
+  }) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._handleLike = handleLike;
     this._ownerId = data.owner._id;
     this._selfId = selfId;
     this._handleDelete = handleDelete;
@@ -31,7 +33,7 @@ export class Card {
 
     this._buttonLike = this._newCard.querySelector(".elements__like");
     this._img = this._newCard.querySelector(".elements__img");
-    this._countLikes = this._newCard.querySelector('.elements__like-count');
+    this._countLikes = this._newCard.querySelector(".elements__like-count");
 
     this._img.alt = this._name;
     this._img.src = this._link;
@@ -57,15 +59,19 @@ export class Card {
     );
   }
 
-  isLike() {
+  isLiked() {
     for (let i = 0; i < this._likesValue.length; i++) {
       if (this._likesValue.i._id === this._selfId) {
         return true;
-      }       
+      }
     }
   }
-  
-  _handleLike() {
-    this._buttonLike.classList.toggle("elements__like_active"); // переключаем состояние лайка
+
+  setLike() {
+    this._buttonLike.classList.add("elements__like_active"); 
+  }
+
+  disLike(){
+    this._buttonLike.classList.remove("elements__like_active"); 
   }
 }

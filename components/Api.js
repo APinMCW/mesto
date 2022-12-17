@@ -33,6 +33,7 @@ export default class Api {
   setUserInfo({ userInfo }) {
     return fetch(`${this._url}${"users/me"}`, {
       headers: this._headers,
+      "Content-type": "application/json",
       method: "PATCH",
       body: JSON.stringify({
         name: userInfo.name,

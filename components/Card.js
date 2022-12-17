@@ -42,6 +42,7 @@ export class Card {
     this._setListeners();
 
     if (this._ownerId !== this._selfId) {
+      const buttonDelete = this._newCard.querySelector(".elements__trash");
       buttonDelete.remove();
     }
 

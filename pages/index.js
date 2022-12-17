@@ -112,6 +112,7 @@ const profileEditFormValidation = new FormValidator(popupProfileEdit, settings);
 // вызываем методы экземпляров
 api.getCards()
 .then((items) =>{
+  console.log(items)
   cardList.render(items);
 })
 .catch((err) => console.log(`Ошибка при запросе карточек: ${err}`));

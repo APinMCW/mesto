@@ -13,33 +13,40 @@ export default class Api {
           `Ошибка: ${response.status} ${response.statusText}`
         );
       }
-    };
+    }
   }
 
   getUserInfo() {
     return fetch(`${this._url}${"users/me"}`, {
       headers: this._headers,
       method: "GET",
-    }).then(this._chechResponse);
+    }).then(this._checkResponse);
   }
 
   getCards() {
-    return fetch(`${this._url}${"cards"}`, {
+    return fetch(`${this._url}${'cards'}`, {
       headers: this._headers,
       method: "GET",
-    }).then(this._chechResponse);
+    }).then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        return Promise.reject(
+          `Ошибка: ${response.status} ${response.statusText}`
+        );
+      }
+    });
   }
 
   setUserInfo({ userInfo }) {
     return fetch(`${this._url}${"users/me"}`, {
-      headers: this._headers,
-      "Content-type": "application/json",
+      headers: { headers, "Content-type": "application/json" },
       method: "PATCH",
       body: JSON.stringify({
         name: userInfo.name,
         about: userInfo.job,
       }),
-    }).then(this._chechResponse);
+    }).then(this._checkResponse);
   }
 
   setCard({ card }) {
@@ -50,28 +57,28 @@ export default class Api {
         name: card.name,
         link: card.link,
       }),
-    }).then(this._chechResponse);
+    }).then(this._checkResponse);
   }
 
   delCard(cardId) {
     return fetch(`${this._url}${"cards"}/${cardId}`, {
       headers: this._headers,
       method: "DELETE",
-    }).then(this._chechResponse);
+    }).then(this._checkResponse);
   }
 
   setLikeCard(cardId) {
     return fetch(`${this._url}${"cards"}/${cardId}${"likes"}`, {
       headers: this._headers,
       method: "PUT",
-    }).then(this._chechResponse);
+    }).then(this._checkResponse);
   }
 
   delLikeCard(cardId) {
     return fetch(`${this._url}${"cards"}/${cardId}${"likes"}`, {
       headers: this._headers,
       method: "DELETE",
-    }).then(this._chechResponse);
+    }).then(this._checkResponse);
   }
 
   setAvatar(avatar) {
@@ -79,6 +86,6 @@ export default class Api {
       headers: this._headers,
       method: "PATCH",
       body: JSON.stringify({ avatar }),
-    }).then(this._chechResponse);
+    }).then(this._checkResponse);
   }
 }

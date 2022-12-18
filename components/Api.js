@@ -2,10 +2,8 @@ export default class Api {
   constructor({ url, headers }) {
     this._url = url;
     this._headers = headers;
-  }
 
-  _checkResponse() {
-    (response) => {
+    this._checkResponse = (response) => {
       if (response.ok) {
         return response.json();
       } else {
@@ -13,7 +11,7 @@ export default class Api {
           `Ошибка: ${response.status} ${response.statusText}`
         );
       }
-    }
+    };
   }
 
   getUserInfo() {
@@ -24,23 +22,15 @@ export default class Api {
   }
 
   getCards() {
-    return fetch(`${this._url}${'cards'}`, {
+    return fetch(`${this._url}${"cards"}`, {
       headers: this._headers,
       method: "GET",
-    }).then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        return Promise.reject(
-          `Ошибка: ${response.status} ${response.statusText}`
-        );
-      }
-    });
+    }).then(this._checkResponse);
   }
 
-  setUserInfo({ userInfo }) {
+  setUserInfo(userInfo) {
     return fetch(`${this._url}${"users/me"}`, {
-      headers: { headers, "Content-type": "application/json" },
+      headers: this._headers,
       method: "PATCH",
       body: JSON.stringify({
         name: userInfo.name,
@@ -49,7 +39,7 @@ export default class Api {
     }).then(this._checkResponse);
   }
 
-  setCard({ card }) {
+  setCard(card) {
     return fetch(`${this._url}${"cards"}`, {
       headers: this._headers,
       method: "POST",
@@ -65,6 +55,20 @@ export default class Api {
       headers: this._headers,
       method: "DELETE",
     }).then(this._checkResponse);
+  }
+
+  changeLikeCardStatus(cardId, isLikeCard) {
+    if (isLikeCard) {
+      return fetch(`${this._url}${"cards"}/${cardId}/${"likes"}`, {
+        headers: this._headers,
+        method: "PUT",
+      }).then(this._checkResponse);
+    } else {
+      return fetch(`${this._url}${"cards"}/${cardId}/${"likes"}`, {
+        headers: this._headers,
+        method: "DELETE",
+      }).then(this._checkResponse);
+    }
   }
 
   setLikeCard(cardId) {
@@ -83,8 +87,8 @@ export default class Api {
 
   setAvatar(avatar) {
     return fetch(`${this._url}${"users/me/avatar"}`, {
-      headers: this._headers,
       method: "PATCH",
+      headers: this._headers,
       body: JSON.stringify({ avatar }),
     }).then(this._checkResponse);
   }

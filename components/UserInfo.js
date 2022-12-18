@@ -1,7 +1,8 @@
 export class UserInfo {
-  constructor({ userNameSelector, aboutMeSelector }) {
+  constructor({ userNameSelector, aboutMeSelector, avatarSelector }) {
     this._profileName = document.querySelector(userNameSelector);
     this._profileJob = document.querySelector(aboutMeSelector);
+    this._profileAvatar = document.querySelector(avatarSelector);
   }
 
   getUserInfo() {
@@ -18,6 +19,11 @@ export class UserInfo {
   setUserInfo(data) {
     //принимает новые данные пользователя и добавляет их на страницу
     this._profileName.textContent = data.name;
-    this._profileJob.textContent = data.job;
+    this._profileJob.textContent = data.about;
+    this._profileAvatar.src = data.avatar;
+  }
+
+  setUserAvatar(link) {
+    this._profileAvatar.src = link;
   }
 }

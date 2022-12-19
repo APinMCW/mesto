@@ -1,4 +1,4 @@
-.profile__button_avatar {
+.profile__button_type_avatar {
     background: url(../../../images/editPenAvatar.svg);
     background-size: 26px 26px;
     background-repeat: no-repeat;
@@ -15,7 +15,7 @@
     position: absolute;
 }
 
-.profile__button_avatar:hover {
+.profile__button_type_avatar:hover {
     background-color:rgba(0,0,0,0.6);
     opacity: 1;
     transition: opacity 0.3s;

@@ -13,7 +13,7 @@ import { RenderLoading } from "../utils/renderLoading.js";
 
 const buttonEditProfile = document.querySelector(".profile__button");
 const buttonAddCard = document.querySelector(".profile__plus");
-const buttonAvatar = document.querySelector(".profile__button_avatar");
+const buttonAvatar = document.querySelector(".profile__button_type_avatar");
 let selfId;
 
 // функции

@@ -11,7 +11,7 @@ import { apiConfig } from "../utils/apiConfig.js";
 import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
 import { RenderLoading } from "../utils/renderLoading.js";
 
-const buttonEditProfile = document.querySelector(".profile__button");
+const buttonEditProfile = document.querySelector(".profile__button_type_edit-data");
 const buttonAddCard = document.querySelector(".profile__plus");
 const buttonAvatar = document.querySelector(".profile__button_type_avatar");
 let selfId;

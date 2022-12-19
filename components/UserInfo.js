@@ -21,6 +21,7 @@ export class UserInfo {
     this._profileName.textContent = data.name;
     this._profileJob.textContent = data.about;
     this._profileAvatar.src = data.avatar;
+    this._id = data._id;
   }
 
   setUserAvatar(link) {

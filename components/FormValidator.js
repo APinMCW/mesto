@@ -1,6 +1,6 @@
 export class FormValidator {
-  constructor(popup, settings) {
-    this._form = popup._form;
+  constructor(form, settings) {
+    this._form = form;
     this._inputSelector = settings.inputSelector;
     this._inputErrorClass = settings.inputErrorClass;
     this._submitButtonSelector = settings.submitButtonSelector;
@@ -61,9 +61,7 @@ export class FormValidator {
   }
 
   _showInputError(inputElement) {
-    const errorElement = inputElement.parentNode.querySelector(
-      this._spanSelector
-    );
+    const errorElement = this._form.querySelector(this._spanSelector);
     inputElement.classList.add(this._inputErrorClass);
     errorElement.textContent = inputElement.validationMessage;
     errorElement.classList.add(this._errorClass);

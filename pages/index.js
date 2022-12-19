@@ -11,15 +11,11 @@ import { apiConfig } from "../utils/apiConfig.js";
 import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
 import { RenderLoading } from "../utils/renderLoading.js";
 
-const buttonEditProfile = document.querySelector(".profile__button_type_edit-data");
+const buttonEditProfile = document.querySelector(
+  ".profile__button_type_edit-data"
+);
 const buttonAddCard = document.querySelector(".profile__plus");
 const buttonAvatar = document.querySelector(".profile__button_type_avatar");
-let selfId;
-
-// функции
-function setId(id) {
-  selfId = id;
-}
 
 function handleCardClick(name, link) {
   popupPreview.open(name, link);
@@ -30,19 +26,22 @@ function createCard(item) {
     data: item,
     templateSelector: ".elements-item-template",
     handleCardClick: handleCardClick,
-    selfId: selfId,
+    selfId: userInfo._id,
     handleDelete: (id) => {
       popupConfirmation.open();
       popupConfirmation.submitHandler(() => {
-        api.delCard(id).then(() => {
-          cardInstance.handleDeleteCard();
-        });
-        popupConfirmation.close();
+        api
+          .delCard(id)
+          .then(() => {
+            cardInstance.handleDeleteCard();
+            popupConfirmation.close();
+          })
+          .catch((err) => console.log(`Ошибка при удалении карточки: ${err}`));
       });
     },
-    handleLike: () => {
+    handleLike: (card) => {
       api
-        .changeLikeCardStatus(cardInstance._id, !cardInstance.isLiked())
+        .changeLikeCardStatus(card._id, !cardInstance.isLiked())
         .then((data) => {
           cardInstance.setLikesInfo({ ...data });
         })
@@ -74,32 +73,39 @@ const cardList = new Section(
 const popupAddCard = new PopupWithForm({
   popupSelector: ".popup_type_add-card",
   handleSubmit: (item) => {
+    loaderAddCard.renderLoading(true);
     api
       .setCard(item)
       .then((newItemData) => {
         cardList.addItem(createCard(newItemData));
+        popupAddCard.close();
       })
-      .catch((err) => console.log(`Ошибка при добавлении карточки: ${err}`));
-    popupAddCard.close();
+      .catch((err) => console.log(`Ошибка при добавлении карточки: ${err}`))
+      .finally(() => loaderAddCard.renderLoading(false));
   },
 });
 
 const popupSetAvatar = new PopupWithForm({
   popupSelector: ".popup_type_set-avatar",
   handleSubmit: (data) => {
+    loaderSetAvatar.renderLoading(true);
     api
       .setAvatar(data.avatar)
       .then((data) => {
         userInfo.setUserAvatar(data.avatar);
+        popupSetAvatar.close();
       })
-      .catch((err) => console.log(`Ошибка при смене аватарки: ${err}`));
-    popupSetAvatar.close();
+      .catch((err) => console.log(`Ошибка при смене аватарки: ${err}`))
+      .finally(() => loaderSetAvatar.renderLoading(false));
   },
 });
 
-const setAvatarFormValidation = new FormValidator(popupSetAvatar, settings);
+const setAvatarFormValidation = new FormValidator(
+  popupSetAvatar._form,
+  settings
+);
 
-const addCardFormValidation = new FormValidator(popupAddCard, settings);
+const addCardFormValidation = new FormValidator(popupAddCard._form, settings);
 
 const userInfo = new UserInfo({
   userNameSelector: ".profile__name",
@@ -110,40 +116,45 @@ const userInfo = new UserInfo({
 const popupProfileEdit = new PopupWithForm({
   popupSelector: ".popup_type_profile",
   handleSubmit: (data) => {
-    loader.renderLoading(true);
+    loaderProdileEdit.renderLoading(true);
     api
       .setUserInfo(data)
       .then((data) => {
         userInfo.setUserInfo(data);
+        popupProfileEdit.close();
       })
       .catch((err) => console.log(`Ошибка при отправке данных профиля: ${err}`))
-      .finally(() => loader.renderLoading(false));
-    popupProfileEdit.close();
+      .finally(() => loaderProdileEdit.renderLoading(false));
   },
 });
 
-const profileEditFormValidation = new FormValidator(popupProfileEdit, settings);
+const profileEditFormValidation = new FormValidator(
+  popupProfileEdit._form,
+  settings
+);
 
-const loader = new RenderLoading({
+const loaderProdileEdit = new RenderLoading({
   popup: popupProfileEdit,
   textLoader: "Сохранение...",
 });
 
-// вызываем методы экземпляров
-api
-  .getUserInfo()
-  .then((data) => {
-    userInfo.setUserInfo(data);
-    setId(data._id);
-  })
-  .catch((err) => console.log(`Ошибка при запросе данных профиля: ${err}`));
+const loaderAddCard = new RenderLoading({
+  popup: popupAddCard,
+  textLoader: "Создание...",
+});
 
-api
-  .getCards()
-  .then((items) => {
-    cardList.render(items);
+const loaderSetAvatar = new RenderLoading({
+  popup: popupSetAvatar,
+  textLoader: "Сохранение...",
+});
+
+// вызываем методы экземпляров
+Promise.all([api.getUserInfo(), api.getCards()])
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo(userData);
+    cardList.render(cards);
   })
-  .catch((err) => console.log(`Ошибка при запросе карточек: ${err}`));
+  .catch((err) => console.log(err));
 
 popupAddCard.setEventListeners();
 addCardFormValidation.enableValidation();

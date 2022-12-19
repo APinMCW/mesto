@@ -2,16 +2,15 @@ export default class Api {
   constructor({ url, headers }) {
     this._url = url;
     this._headers = headers;
-
-    this._checkResponse = (response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        return Promise.reject(
-          `Ошибка: ${response.status} ${response.statusText}`
-        );
-      }
-    };
+  }
+  _checkResponse(response) {
+    if (response.ok) {
+      return response.json();
+    } else {
+      return Promise.reject(
+        `Ошибка: ${response.status} ${response.statusText}`
+      );
+    }
   }
 
   getUserInfo() {
@@ -69,20 +68,6 @@ export default class Api {
         method: "DELETE",
       }).then(this._checkResponse);
     }
-  }
-
-  setLikeCard(cardId) {
-    return fetch(`${this._url}${"cards"}/${cardId}${"likes"}`, {
-      headers: this._headers,
-      method: "PUT",
-    }).then(this._checkResponse);
-  }
-
-  delLikeCard(cardId) {
-    return fetch(`${this._url}${"cards"}/${cardId}${"likes"}`, {
-      headers: this._headers,
-      method: "DELETE",
-    }).then(this._checkResponse);
   }
 
   setAvatar(avatar) {

@@ -74,7 +74,7 @@ export class Card {
     );
 
     this._buttonLike.addEventListener("click", () =>
-      this._handleLike(this._data)
+      this._handleLike(this._id)
     );
 
     this._img.addEventListener("click", () =>

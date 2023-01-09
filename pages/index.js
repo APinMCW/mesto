@@ -39,9 +39,9 @@ function createCard(item) {
           .catch((err) => console.log(`Ошибка при удалении карточки: ${err}`));
       });
     },
-    handleLike: (card) => {
+    handleLike: (id) => {
       api
-        .changeLikeCardStatus(card._id, !cardInstance.isLiked())
+        .changeLikeCardStatus(id, !cardInstance.isLiked())
         .then((data) => {
           cardInstance.setLikesInfo({ ...data });
         })

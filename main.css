@@ -44,7 +44,7 @@
 .popup__form{box-sizing:border-box;display:flex;flex-direction:column;margin:14px 36px 37px}@media (max-width:500px){.popup__form{margin:45px 22px 25px}}
 .popup__container{display:block;width:100%}
 .popup__container_type_add-card{background-color:#fff;border-radius:10px;box-shadow:0 0 25px rgba(0,0,0,.15);height:-moz-max-content;height:max-content;max-width:430px;position:relative}@media (max-width:500px){.popup__container_type_add-card{max-width:282px}}
-.popup__container_type_preview{position:relative}
+.popup__container_type_preview{position:relative;width:-moz-fit-content;width:fit-content}
 .popup__container_type_profile{background-color:#fff;border-radius:10px;box-shadow:0 0 25px rgba(0,0,0,.15);height:-moz-max-content;height:max-content;max-width:430px;position:relative}@media (max-width:550px){.popup__container_type_profile{max-width:282px}}
 .popup__container_type_confirmation{background-color:#fff;border-radius:10px;box-shadow:0 0 25px rgba(0,0,0,.15);height:-moz-max-content;height:max-content;max-width:430px;padding:0 0 36px;position:relative}@media (max-width:500px){.popup__container_type_confirmation{max-width:282px}}
 .popup__container_type_set-avatar{background-color:#fff;border-radius:10px;box-shadow:0 0 25px rgba(0,0,0,.15);height:-moz-max-content;height:max-content;max-width:430px;position:relative}@media (max-width:550px){.popup__container_type_set-avatar{max-width:282px}}
